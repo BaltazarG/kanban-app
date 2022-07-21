@@ -56,8 +56,8 @@ const Signup = () => {
       localStorage.setItem("token", res.token);
       navigate("/");
     } catch (err) {
-      const errors = err?.data.errors;
-      errors?.forEach(e => {
+      const errors = err.data.errors;
+      errors.forEach(e => {
         if (e.param === "username") {
           setUsernameErrText(e?.msg);
         }
