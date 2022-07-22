@@ -193,11 +193,11 @@ const Board = () => {
             variant="outlined"
             multiline
             fullWidth
-            // sx={{
-            //   '& .MuiOutlinedInput-input': { padding: 0 },
-            //   '& .MuiOutlinedInput-notchedOutline': { border: 'unset ' },
-            //   '& .MuiOutlinedInput-root': { fontSize: '0.8rem' }
-            // }}
+            sx={{
+              "& .MuiOutlinedInput-input": { padding: 0 },
+              "& .MuiOutlinedInput-notchedOutline": { border: "unset " },
+              "& .MuiOutlinedInput-root": { fontSize: "0.8rem" },
+            }}
           />
         </Box>
         <Box>
