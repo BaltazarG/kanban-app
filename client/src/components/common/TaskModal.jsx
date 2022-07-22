@@ -16,6 +16,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import taskApi from "../../api/taskApi";
 
 import "../../css/custom-editor.css";
+import "./TaskModal.css";
 
 const modalStyle = {
   outline: "none",
