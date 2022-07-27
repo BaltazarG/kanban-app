@@ -16,7 +16,6 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import taskApi from "../../api/taskApi";
 
 import "../../css/custom-editor.css";
-import "./TaskModal.css";
 
 const modalStyle = {
   outline: "none",
@@ -162,6 +161,7 @@ const TaskModal = props => {
                 marginBottom: "10px",
               }}
             />
+
             <Typography variant="body2" fontWeight="700">
               {task !== undefined
                 ? Moment(task.createdAt).format("YYYY-MM-DD")
