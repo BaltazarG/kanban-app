@@ -95,24 +95,40 @@ const TaskModal = props => {
     props.onUpdate(task);
   };
 
-  const updateContent = async (event, editor) => {
+  const updateContent = async e => {
     clearTimeout(timer);
-    const data = editor.getData();
+    const newContent = e.target.value;
+    timer = setTimeout(async () => {
+      try {
+        await taskApi.update(boardId, task.id, { content: newContent });
+      } catch (err) {
+        alert(err);
+      }
+    }, timeout);
 
-    if (!isModalClosed) {
-      timer = setTimeout(async () => {
-        try {
-          await taskApi.update(boardId, task.id, { content: data });
-        } catch (err) {
-          alert(err);
-        }
-      }, timeout);
-
-      task.content = data;
-      setContent(data);
-      props.onUpdate(task);
-    }
+    task.content = content;
+    setContent(newContent);
+    props.onUpdate(task);
   };
+
+  // const updateContent = async (event, editor) => {
+  //   clearTimeout(timer);
+  //   const data = editor.getData();
+
+  //   if (!isModalClosed) {
+  //     timer = setTimeout(async () => {
+  //       try {
+  //         await taskApi.update(boardId, task.id, { content: data });
+  //       } catch (err) {
+  //         alert(err);
+  //       }
+  //     }, timeout);
+
+  //     task.content = data;
+  //     setContent(data);
+  //     props.onUpdate(task);
+  //   }
+  // };
 
   return (
     <Modal
@@ -177,10 +193,29 @@ const TaskModal = props => {
                 overflowY: "auto",
               }}
             >
-              <CKEditor
-                editor={ClassicEditor}
-                data={content}
+              {/* <CKEditor
+                    editor={ClassicEditor}
+                    data={content}
+                    onChange={updateContent}
+                    onFocus={updateEditorHeight}
+                    onBlur={updateEditorHeight}
+                  /> */}
+              <TextField
+                value={content}
                 onChange={updateContent}
+                placeholder="task"
+                variant="outlined"
+                fullWidth
+                sx={{
+                  width: "100%",
+                  "& .MuiOutlinedInput-input": { padding: 0 },
+                  "& .MuiOutlinedInput-notchedOutline": { border: "unset " },
+                  "& .MuiOutlinedInput-root": {
+                    fontSize: "1.2rem",
+                    fontWeight: "400",
+                  },
+                  marginBottom: "10px",
+                }}
               />
             </Box>
           </Box>
